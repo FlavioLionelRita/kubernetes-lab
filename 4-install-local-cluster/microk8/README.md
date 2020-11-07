@@ -10,6 +10,14 @@ sudo snap install microk8s --classic
 sudo usermod -a -G microk8s flavio
 sudo chown -f -R flavio ~/.kube
 ```
+debe reiniciar la maquina.
+
+## addons
+```
+microk8s enable dns dashboard storage
+```
+
+
 
 
 ## reference
