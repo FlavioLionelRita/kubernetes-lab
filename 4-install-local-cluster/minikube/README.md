@@ -1,13 +1,13 @@
 # Install
 
-
+## prerequisites
 install conntrack
 ```
 sudo apt-get update -y
 sudo apt-get install -y conntrack
 ```
 
-install minikube
+## install minikube
 ```
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 
 chmod +x minikube
@@ -19,10 +19,10 @@ test
 minikube version
 ```
 
-## reference 
+### reference 
 - [install minikube](https://kubernetes.io/es/docs/tasks/tools/install-minikube/) 
 
-# install kubectl 
+## install kubectl 
 
 averiguar cual es la ultima version
 ```
@@ -33,7 +33,7 @@ instalar la ultima version
 ```
 curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.19.3/bin/linux/amd64/kubectl
 chmod +x ./kubectl
-mv ./kubectl /usr/local/bin/kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
 ```
 
 test
@@ -41,26 +41,23 @@ test
 kubectl version
 ```
 
-## reference 
+### reference 
 - [install kubectl](https://kubernetes.io/es/docs/tasks/tools/install-kubectl/) 
 
 
-# start minikube 
+## start minikube 
 ```
-sudo minikube start
-//sudo minikube start --vm-driver=none
-sudo minikube stop
+//minikube start
+sudo minikube start --vm-driver=none
+//sudo minikube stop
 ```
-# minikue dachboard
-```
-minikube dashboard
-```
-# Minikube addons
+
+## Minikube addons
 Listar
 ```
 minikube addons list
 ```
-Enable: helm-tiller, ingress,	ingress-dns, registry, 	registry-creds
+Enable: addons
 ```
 minikube addons enable helm-tiller
 minikube addons enable ingress
@@ -68,6 +65,12 @@ minikube addons enable ingress-dns
 minikube addons enable registry
 minikube addons enable registry-aliases
 minikube addons enable registry-creds 
+minikube addons enable metrics-server
+```
+
+## minikue dachboard
+```
+minikube dashboard
 ```
 
 # Unistall minikube
