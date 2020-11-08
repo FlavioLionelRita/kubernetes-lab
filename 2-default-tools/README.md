@@ -19,6 +19,12 @@ wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add
 sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
 sudo apt update
 sudo apt install code
+
+sudo apt update
+sudo apt install snapd
+sudo snap install kontena-lens --classic
+
+
 ```
 # configuration
 
@@ -37,3 +43,4 @@ git config --global user.email "flaviolrital@hotmail.com"
 - [git](https://www.digitalocean.com/community/tutorials/como-instalar-git-en-ubuntu-18-04-es)
 - [vim](https://openwebinars.net/blog/vim-manual-de-uso-basico/)
 - [visualcode](https://linuxize.com/post/how-to-install-visual-studio-code-on-ubuntu-18-04/)
+- [lens](https://snapcraft.io/install/kontena-lens/ubuntu)
