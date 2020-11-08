@@ -11,6 +11,8 @@ curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
 sudo bash nodesource_setup.sh
 sudo apt-get install -y nodejs
 sudo apt install git
+sudo apt-get update
+sudo apt-get install vim
 sudo apt update
 sudo apt install software-properties-common apt-transport-https wget
 wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
@@ -33,6 +35,5 @@ git config --global user.email "flaviolrital@hotmail.com"
 - [wget](https://www.cyberciti.biz/faq/how-to-install-wget-togetrid-of-error-bash-wget-command-not-found/)
 - [node]{https://www.digitalocean.com/community/tutorials/como-instalar-node-js-en-ubuntu-18-04-es}
 - [git](https://www.digitalocean.com/community/tutorials/como-instalar-git-en-ubuntu-18-04-es)
-
-https://linuxize.com/post/how-to-install-visual-studio-code-on-ubuntu-18-04/
-- [visualcode](https://geekytheory.com/como-instalar-visual-studio-code-en-ubuntu-linux-y-derivadas)
+- [vim](https://openwebinars.net/blog/vim-manual-de-uso-basico/)
+- [visualcode](https://linuxize.com/post/how-to-install-visual-studio-code-on-ubuntu-18-04/)
