@@ -2,6 +2,11 @@
 # Test
 
 TODO: Aun no funciona, hay que ver por que.
+# info
+https://cert-manager.io/docs/tutorials/acme/ingress/
+https://cert-manager.io/docs/usage/ingress/
+https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nginx-ingress-with-cert-manager-on-digitalocean-kubernetes-es
+
 
 ## create test
  ```
