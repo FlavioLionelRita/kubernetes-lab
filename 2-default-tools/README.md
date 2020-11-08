@@ -24,7 +24,7 @@ sudo apt update
 sudo apt install snapd
 sudo snap install kontena-lens --classic
 
-
+sudo snap install helm --classic
 ```
 # configuration
 
@@ -44,3 +44,4 @@ git config --global user.email "flaviolrital@hotmail.com"
 - [vim](https://openwebinars.net/blog/vim-manual-de-uso-basico/)
 - [visualcode](https://linuxize.com/post/how-to-install-visual-studio-code-on-ubuntu-18-04/)
 - [lens](https://snapcraft.io/install/kontena-lens/ubuntu)
+- [helm](https://helm.sh/docs/intro/install/)
