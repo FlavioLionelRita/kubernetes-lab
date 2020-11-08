@@ -15,7 +15,7 @@ kubectl get svc nginx-ingress --namespace=nginx-ingress
 
 Add host
 ```
-10.152.183.13  flaviolrita.local echo1.flaviolrita.local echo2.flaviolrita.local
+10.152.183.13   example.local echo1.example.local echo2.example.local echo2.example.local
 ``` 
 
 ## create test
@@ -28,8 +28,8 @@ Add host
 
 ## test
 ```
- curl echo1.flaviolrita.local
- curl echo2.flaviolrita.local
+ curl echo1.example.local
+ curl echo2.example.local
 ```
 
 

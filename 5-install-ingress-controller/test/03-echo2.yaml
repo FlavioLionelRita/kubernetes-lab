@@ -49,7 +49,7 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
-  - host: echo2.flaviolrita.local
+  - host: echo2.example.local
     http:
      paths:
       - path: /
