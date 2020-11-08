@@ -17,8 +17,8 @@ kubectl delete -f 03-echo2.yaml
 
 ## test
 ```
- curl echo1.example.local
- curl echo2.example.local
+ curl echo1.example.com
+ curl echo2.example.com
 ```
 
 
