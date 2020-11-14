@@ -46,7 +46,6 @@ kubectl get nodes
 kubectl label node k3s-worker1 node-role.kubernetes.io/node=''
 kubectl label node k3s-worker2 node-role.kubernetes.io/node=''
 kubectl taint node k3s-master node-role.kubernetes.io/master=effect:NoSchedule 
-kubectl run nginx --image=nginx --replicas=3 --expose --port 80
 ```
 ### Verify
 ```
@@ -60,20 +59,21 @@ kubectl create clusterrolebinding tiller --clusterrole=cluster-admin --serviceac
 helm init --service-account tiller
 ``` 
 
-###  test
+## add nginx
 ```
-helm install mysql bitnami/mysql
-kubectl get pod --all-namespaces
+kubectl create namespace nginx
+kubectl run nginx --image=nginx --replicas=3 --expose --port 80 -n nginx
 ```
 
-## Clear tests
-```
-kubectl delete pod nginx
-helm uninstall mysql
-```
+# PROBLEM
+- problem: It did not work for me to reach the services through nginx
+- casuse: nginx conflict with trafik
+    - [info](https://dev.to/sr229/how-to-use-nginx-ingress-controller-in-k3s-2ck2)
+    I gave up and I will try to install multipass with microk8s  
+- solution: I still haven't found it      
 
 <!-- 
-## Clean up your cluster
+## Uninstall cluster
 ```
 multipass stop k3s-master k3s-worker1 k3s-worker2
 multipass delete k3s-master k3s-worker1 k3s-worker2
@@ -81,12 +81,9 @@ multipass purge
 ``` 
 -->
 
-
 ## references
 -[create cluster multipass-k3s](https://levelup.gitconnected.com/kubernetes-cluster-with-k3s-and-multipass-7532361affa3)
--[create cluster multipass-k3s](https://andreipope.github.io/tutorials/create-a-cluster-with-multipass-and-k3s)
-
 -[install multipass](https://multipass.run/docs/installing-on-linux) 
 
 
-https://levelup.gitconnected.com/kubernetes-cluster-with-k3s-and-multipass-7532361affa3
+
