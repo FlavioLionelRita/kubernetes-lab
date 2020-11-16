@@ -38,6 +38,9 @@ vi /etc/apt/sources.list
 sudo apt-get update
 ```
 
+sudo apt update
+sudo snap install dbeaver-ce
+
 # refrences
 - [install mariadb](https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-ubuntu-18-04-es)
 - [uninstall mariadb](https://londonappdeveloper.com/2015/03/30/how-to-completely-uninstall-mariadb-from-a-debian-7-server/)

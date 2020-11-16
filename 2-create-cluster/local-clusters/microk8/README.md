@@ -14,7 +14,11 @@ su - ${USER}
 
 ## addons
 ```
-microk8s enable dns dashboard storage
+microk8s enable dns dashboard storage 
+microk8s enable host-access
+
+//microk8s disable helm3 prometheus rbac
+
 ```
 
 ## test
@@ -31,11 +35,11 @@ microk8s config > config
 
 
 ## create aliases mk for "microk8s kubectl"
-[how to create aliases](https://linuxize.com/post/how-to-create-bash-aliases/)
+- [how to create aliases](https://linuxize.com/post/how-to-create-bash-aliases/)
 
 ## reference
-
-['Cómo instalar MicroK8s'](https://ubunlog.com/microk8s-una-herramienta-para-desplegar-kubernetes-en-segundos/)
-['install microk8s'](https://microk8s.io/docs)
-[install microk8s](https://ubuntu.com/tutorials/install-a-local-kubernetes-with-microk8s#2-deploying-microk8s)
-[create kubeconfig](https://microk8s.io/docs/working-with-kubectl)
+- ['Cómo instalar MicroK8s'](https://ubunlog.com/microk8s-una-herramienta-para-desplegar-kubernetes-en-segundos/)
+- ['install microk8s'](https://microk8s.io/docs)
+- [install microk8s](https://ubuntu.com/tutorials/install-a-local-kubernetes-with-microk8s#2-deploying-microk8s)
+- [create kubeconfig](https://microk8s.io/docs/working-with-kubectl)
+- [host-access](https://microk8s.io/docs/addon-host-access)
