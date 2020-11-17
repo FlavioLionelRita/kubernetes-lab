@@ -12,6 +12,13 @@ chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl
 ```
 
+
+## permisios for user 
+```
+sudo chown -f -R flavio ~/.kube
+su - ${USER}
+```
+
 ## test
 ```
 kubectl version
