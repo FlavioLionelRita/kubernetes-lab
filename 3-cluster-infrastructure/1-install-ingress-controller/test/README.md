@@ -21,7 +21,7 @@ multipass info k3s-master
 
 Add host
 ```
-10.131.90.115  www.example.com echo1.example.com echo2.example.com
+10.152.183.55  www.example.com echo1.example.com echo2.example.com
 ``` 
 
 ## create test
