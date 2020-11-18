@@ -21,7 +21,7 @@ sudo apt update
 sudo apt install code
 sudo apt update
 sudo apt install snapd
-sudo snap install kontena-lens --classic
+//sudo snap install kontena-lens --classic
 sudo snap install helm --classic
 helm repo add bitnami https://charts.bitnami.com/bitnami
 ```
