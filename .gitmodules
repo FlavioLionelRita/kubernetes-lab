@@ -1,0 +1,3 @@
+[submodule "2-create-cluster/cloud-cluster/google/cloud-google-lab"]
+	path = 2-create-cluster/cloud-cluster/google/cloud-google-lab
+	url = https://github.com/FlavioLionelRita/cloud-google-lab
