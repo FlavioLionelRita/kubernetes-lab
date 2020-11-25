@@ -1,0 +1,6 @@
+Con lo de skaffold y que te decia q de manera local podemos tener todo,
+se construye las imagenes asi https://skaffold.dev/docs/pipeline-stages/builders/docker/ ,
+entiendo que basicamente para hacer la imagen y el despiegue tenemos esto https://github.com/OpenWebinarsNet/openwebinars-helm-example/blob/master/skaffold.yaml
+ que hace el -build de la imagen  y el deploy de la app- en k8s ... 
+ lo cual ya no se haria esto https://github.com/OpenWebinarsNet/openwebinars-helm-example/blob/master/build.sh 
+ que se haria si no queremos skaffold.
