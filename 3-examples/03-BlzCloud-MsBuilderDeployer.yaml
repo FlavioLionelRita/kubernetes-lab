@@ -1,0 +1,371 @@
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: blzcloud-msbuilderdeployer-dev-blazed-builders
+  namespace: dev-blazed-dev
+  labels:
+    app.kubernetes.io/name: blzcloud-msbuilderdeployer-dev-blazed
+    app.kubernetes.io/instance: blzcloud-msbuilderdeployer-dev-blazed
+    app.kubernetes.io/version: '20201201'
+    app.kubernetes.io/component: MsBuilderDeployer
+    app.kubernetes.io/part-of: BlzCloud
+    app.kubernetes.io/managed-by: blazedpath
+    blazedEnv: dev
+    accountCode: blazed
+    enviromentCode: dev
+    repositoryCode: blzcloud
+    solutionCode: BlzCloud
+    tier: backend
+  annotations:
+    volume.beta.kubernetes.io/storage-class: aws-efs
+spec:
+  storageClassName: aws-efs
+  resources:
+    requests:
+      storage: 5Gi
+  accessModes:
+    - ReadWriteMany
+
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: blzcloud-msbuilderdeployer-dev-blazed-sources
+  namespace: dev-blazed-dev
+  labels:
+    app.kubernetes.io/name: blzcloud-msbuilderdeployer-dev-blazed
+    app.kubernetes.io/instance: blzcloud-msbuilderdeployer-dev-blazed
+    app.kubernetes.io/version: '20201201'
+    app.kubernetes.io/component: MsBuilderDeployer
+    app.kubernetes.io/part-of: BlzCloud
+    app.kubernetes.io/managed-by: blazedpath
+    blazedEnv: dev
+    accountCode: blazed
+    enviromentCode: dev
+    repositoryCode: blzcloud
+    solutionCode: BlzCloud
+    tier: backend
+  annotations:
+    volume.beta.kubernetes.io/storage-class: aws-efs
+spec:
+  storageClassName: aws-efs
+  resources:
+    requests:
+      storage: 15Gi
+  accessModes:
+    - ReadWriteMany
+
+---
+kind: StatefulSet
+apiVersion: apps/v1
+metadata:
+  name: blzcloud-msbuilderdeployer-dev-blazed
+  namespace: dev-blazed-dev
+  labels:
+    app.kubernetes.io/name: blzcloud-msbuilderdeployer-dev-blazed
+    app.kubernetes.io/instance: blzcloud-msbuilderdeployer-dev-blazed
+    app.kubernetes.io/version: '20201201'
+    app.kubernetes.io/component: MsBuilderDeployer
+    app.kubernetes.io/part-of: BlzCloud
+    app.kubernetes.io/managed-by: blazedpath
+    blazedEnv: dev
+    accountCode: blazed
+    enviromentCode: dev
+    repositoryCode: blzcloud
+    solutionCode: BlzCloud
+    tier: backend
+  annotations:
+    prometheus.io/scrape: 'true'
+    prometheus.io/path: /metrics
+    prometheus.io/port: '8080'
+    kubernetes.io/change-cause: '20201201'
+    polaris.fairwinds.com/exempt: 'true'
+spec:
+  replicas: 2
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: blzcloud-msbuilderdeployer-dev-blazed
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: blzcloud-msbuilderdeployer-dev-blazed
+        app.kubernetes.io/instance: blzcloud-msbuilderdeployer-dev-blazed
+        app.kubernetes.io/version: '20201201'
+        app.kubernetes.io/component: MsBuilderDeployer
+        app.kubernetes.io/part-of: BlzCloud
+        app.kubernetes.io/managed-by: blazedpath
+        blazedEnv: dev
+        enviromentCode: dev
+        repositoryCode: blzcloud
+        solutionCode: BlzCloud
+        tier: backend
+      annotations:
+        prometheus.io/scrape: 'true'
+        prometheus.io/path: /metrics
+        prometheus.io/port: '8080'
+        kubernetes.io/change-cause: '20201201'
+        polaris.fairwinds.com/exempt: 'true'
+    spec:
+      containers:
+        - name: blzcloud-msbuilderdeployer-dev-blazed
+          image: >-
+            docker.blazedpath.com/blazed/blz-cloud-ms-builder-deployer:20201202-3
+          imagePullPolicy: Always
+          env:
+            - name: blz_MsBuilderDeployer_param_frontServiceType
+              valueFrom:
+                configMapKeyRef:
+                  name: blzcloud-msbuilderdeployer-dev-blazed-configmap
+                  key: param_frontServiceType
+            - name: blz_MsBuilderDeployer_param_hostPath
+              valueFrom:
+                configMapKeyRef:
+                  name: blzcloud-msbuilderdeployer-dev-blazed-configmap
+                  key: param_hostPath
+            - name: blz_MsBuilderDeployer_param_buildersPath
+              valueFrom:
+                configMapKeyRef:
+                  name: blzcloud-msbuilderdeployer-dev-blazed-configmap
+                  key: param_buildersPath
+            - name: blz_MsBuilderDeployer_param_bucketBuilders
+              valueFrom:
+                configMapKeyRef:
+                  name: blzcloud-msbuilderdeployer-dev-blazed-configmap
+                  key: param_bucketBuilders
+            - name: blz_MsBuilderDeployer_param_sourcesPath
+              valueFrom:
+                configMapKeyRef:
+                  name: blzcloud-msbuilderdeployer-dev-blazed-configmap
+                  key: param_sourcesPath
+            - name: blz_MsBuilderDeployer_param_blazedEnv
+              valueFrom:
+                configMapKeyRef:
+                  name: blzcloud-msbuilderdeployer-dev-blazed-configmap
+                  key: param_blazedEnv
+            - name: blz_MsBuilderDeployer_param_imagesBase_default
+              valueFrom:
+                configMapKeyRef:
+                  name: blzcloud-msbuilderdeployer-dev-blazed-configmap
+                  key: param_imagesBase_default
+            - name: blz_MsBuilderDeployer_param_imagesBase_nodejs_default
+              valueFrom:
+                configMapKeyRef:
+                  name: blzcloud-msbuilderdeployer-dev-blazed-configmap
+                  key: param_imagesBase_nodejs_default
+            - name: blz_MsBuilderDeployer_param_imagesBase_nodejs_oracle
+              valueFrom:
+                configMapKeyRef:
+                  name: blzcloud-msbuilderdeployer-dev-blazed-configmap
+                  key: param_imagesBase_nodejs_oracle
+            - name: blz_MsBuilderDeployer_param_imagesBase_java_default
+              valueFrom:
+                configMapKeyRef:
+                  name: blzcloud-msbuilderdeployer-dev-blazed-configmap
+                  key: param_imagesBase_java_default
+            - name: blz_MsBuilderDeployer_param_imagesBase_java_oracle
+              valueFrom:
+                configMapKeyRef:
+                  name: blzcloud-msbuilderdeployer-dev-blazed-configmap
+                  key: param_imagesBase_java_oracle
+            - name: blz_MsBuilderDeployer_param_quotas
+              valueFrom:
+                configMapKeyRef:
+                  name: blzcloud-msbuilderdeployer-dev-blazed-configmap
+                  key: param_quotas
+            - name: blz_MsBuilderDeployer_param_route53_target_dnsname
+              valueFrom:
+                configMapKeyRef:
+                  name: blzcloud-msbuilderdeployer-dev-blazed-configmap
+                  key: param_route53_target_dnsname
+            - name: blz_MsBuilderDeployer_param_route53_target_hostedzoneid
+              valueFrom:
+                configMapKeyRef:
+                  name: blzcloud-msbuilderdeployer-dev-blazed-configmap
+                  key: param_route53_target_hostedzoneid
+            - name: blz_MsBuilderDeployer_param_route53_hostedzoneid
+              valueFrom:
+                configMapKeyRef:
+                  name: blzcloud-msbuilderdeployer-dev-blazed-configmap
+                  key: param_route53_hostedzoneid
+            - name: blz_MsBuilderDeployer_param_minio_endPoint
+              valueFrom:
+                configMapKeyRef:
+                  name: blzcloud-msbuilderdeployer-dev-blazed-configmap
+                  key: param_minio_endPoint
+            - name: blz_MsBuilderDeployer_param_minio_region
+              valueFrom:
+                configMapKeyRef:
+                  name: blzcloud-msbuilderdeployer-dev-blazed-configmap
+                  key: param_minio_region
+            - name: blz_MsBuilderDeployer_param_minio_accessKey
+              valueFrom:
+                configMapKeyRef:
+                  name: blzcloud-msbuilderdeployer-dev-blazed-configmap
+                  key: param_minio_accessKey
+            - name: blz_MsBuilderDeployer_param_minio_secretKey
+              valueFrom:
+                configMapKeyRef:
+                  name: blzcloud-msbuilderdeployer-dev-blazed-configmap
+                  key: param_minio_secretKey
+            - name: blz_MsBuilderDeployer_param_cluster_kubeconfig
+              valueFrom:
+                configMapKeyRef:
+                  name: blzcloud-msbuilderdeployer-dev-blazed-configmap
+                  key: param_cluster_kubeconfig
+            - name: blz_MsBuilderDeployer_param_cluster_cert_manager_cluster_issuer
+              valueFrom:
+                configMapKeyRef:
+                  name: blzcloud-msbuilderdeployer-dev-blazed-configmap
+                  key: param_cluster_cert_manager_cluster_issuer
+            - name: blz_MsBuilderDeployer_param_registry_endpoint
+              valueFrom:
+                configMapKeyRef:
+                  name: blzcloud-msbuilderdeployer-dev-blazed-configmap
+                  key: param_registry_endpoint
+            - name: blz_MsBuilderDeployer_param_registry_type
+              valueFrom:
+                configMapKeyRef:
+                  name: blzcloud-msbuilderdeployer-dev-blazed-configmap
+                  key: param_registry_type
+            - name: blz_MsBuilderDeployer_param_registry_user
+              valueFrom:
+                configMapKeyRef:
+                  name: blzcloud-msbuilderdeployer-dev-blazed-configmap
+                  key: param_registry_user
+            - name: blz_MsBuilderDeployer_param_registry_password
+              valueFrom:
+                configMapKeyRef:
+                  name: blzcloud-msbuilderdeployer-dev-blazed-configmap
+                  key: param_registry_password
+            - name: blz_MsBuilderDeployer_trace
+              valueFrom:
+                configMapKeyRef:
+                  name: blzcloud-msbuilderdeployer-dev-blazed-configmap
+                  key: trace
+            - name: blz_MsBuilderDeployer_logError
+              valueFrom:
+                configMapKeyRef:
+                  name: blzcloud-msbuilderdeployer-dev-blazed-configmap
+                  key: logError
+            - name: blz_MsBuilderDeployer_port
+              valueFrom:
+                configMapKeyRef:
+                  name: blzcloud-msbuilderdeployer-dev-blazed-configmap
+                  key: port
+            - name: blz_MsBuilderDeployer_url
+              valueFrom:
+                configMapKeyRef:
+                  name: blzcloud-msbuilderdeployer-dev-blazed-configmap
+                  key: url
+          ports:
+            - containerPort: 9456
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 9456
+            initialDelaySeconds: 60
+            periodSeconds: 30
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 9456
+            initialDelaySeconds: 120
+            failureThreshold: 3
+            periodSeconds: 240
+          securityContext:
+            readOnlyRootFilesystem: false
+            runAsNonRoot: false
+            runAsUser: 0
+            privileged: true
+          volumeMounts:
+            - name: builders
+              mountPath: /builders
+            - name: sources
+              mountPath: /sources
+          resources:
+            requests:
+              cpu: 500m
+              memory: 1Gi
+            limits:
+              cpu: 500m
+              memory: 1Gi
+      volumes:
+        - name: builders
+          persistentVolumeClaim:
+            claimName: blzcloud-msbuilderdeployer-dev-blazed-builders
+        - name: sources
+          persistentVolumeClaim:
+            claimName: blzcloud-msbuilderdeployer-dev-blazed-sources
+      serviceAccountName: msdeployer-blzcloud
+  serviceName: blzcloud-msbuilderdeployer-dev-blazed
+
+---
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: blzcloud-msbuilderdeployer-dev-blazed
+  namespace: dev-blazed-dev
+  labels:
+    app.kubernetes.io/name: blzcloud-msbuilderdeployer-dev-blazed
+    app.kubernetes.io/instance: blzcloud-msbuilderdeployer-dev-blazed
+    app.kubernetes.io/version: '20201201'
+    app.kubernetes.io/component: MsBuilderDeployer
+    app.kubernetes.io/part-of: BlzCloud
+    app.kubernetes.io/managed-by: blazedpath
+    blazedEnv: dev
+    accountCode: blazed
+    enviromentCode: dev
+    repositoryCode: blzcloud
+    solutionCode: BlzCloud
+    tier: backend
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: blzcloud-msbuilderdeployer-dev-blazed
+  minReplicas: 2
+  maxReplicas: 3
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 75
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 75
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: blzcloud-msbuilderdeployer-dev-blazed
+  namespace: dev-blazed-dev
+  labels:
+    app.kubernetes.io/name: blzcloud-msbuilderdeployer-dev-blazed
+    app.kubernetes.io/instance: blzcloud-msbuilderdeployer-dev-blazed
+    app.kubernetes.io/version: '20201201'
+    app.kubernetes.io/component: MsBuilderDeployer
+    app.kubernetes.io/part-of: BlzCloud
+    app.kubernetes.io/managed-by: blazedpath
+    blazedEnv: dev
+    accountCode: blazed
+    enviromentCode: dev
+    repositoryCode: blzcloud
+    solutionCode: BlzCloud
+    tier: backend
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: blzcloud-msbuilderdeployer-dev-blazed
+  ports:
+    - port: 9456
+      targetPort: 9456
+      protocol: TCP
+      name: blzcloud-msbuilderdeployer-dev-blazed
