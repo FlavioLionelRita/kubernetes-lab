@@ -20,6 +20,18 @@ spec:
         image: quay.io/clcollins/kube-verify:01
         ports:
         - containerPort: 8080
+        securityContext:
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 1000
+        resources:
+            requests:
+              cpu: 250m
+              memory: 500Mi
+            limits:
+              cpu: 250m
+              memory: 500Mi  
+
 ---
 apiVersion: v1
 kind: Service
