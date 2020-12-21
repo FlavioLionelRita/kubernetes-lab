@@ -1,0 +1,48 @@
+
+kind: Secret
+apiVersion: v1
+metadata:
+  name: blzcloud-dbcloud-dev-blazed-secret
+  namespace: dev-blazed-dev
+  labels:
+    app.kubernetes.io/name: blzcloud-dbcloud-dev-blazed
+    app.kubernetes.io/instance: blzcloud-dbcloud-dev-blazed
+    app.kubernetes.io/version: '20201201'
+    app.kubernetes.io/component: DbCloud
+    app.kubernetes.io/part-of: BlzCloud
+    app.kubernetes.io/managed-by: blazedpath
+    blazedEnv: dev
+    accountCode: blazed
+    enviromentCode: dev
+    repositoryCode: blzcloud
+    solutionCode: BlzCloud
+    tier: backend
+type: Opaque
+data:
+  password: TzNJWHEyakFKUXk1ZkROTkJ4R00=
+
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: blzcloud-dbcloud-dev-blazed-configmap
+  namespace: dev-blazed-dev
+  labels:
+    app.kubernetes.io/name: blzcloud-dbcloud-dev-blazed
+    app.kubernetes.io/instance: blzcloud-dbcloud-dev-blazed
+    app.kubernetes.io/version: '20201201'
+    app.kubernetes.io/component: DbCloud
+    app.kubernetes.io/part-of: BlzCloud
+    app.kubernetes.io/managed-by: blazedpath
+    blazedEnv: dev
+    accountCode: blazed
+    enviromentCode: dev
+    repositoryCode: blzcloud
+    solutionCode: BlzCloud
+    tier: backend
+data:
+  providerName: MySql
+  host: blazeddb-production.cluster-cetoi8xavrlb.us-east-2.rds.amazonaws.com
+  port: '3306'
+  user: DbCloudDev
+  database: DbCloudDev
