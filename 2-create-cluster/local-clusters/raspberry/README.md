@@ -78,7 +78,7 @@ echo $TOKEN
 ```
 TOKEN: v03flf.zj4f4yk4qm4dpygk
 
-## Initialize the Control Plane
+## Initialize the Control Plane CIDR
 ```
 sudo kubeadm init --token=${TOKEN} --kubernetes-version=v1.19.4 --pod-network-cidr=10.244.0.0/16
 ```
@@ -145,6 +145,11 @@ kubectl get all -n kube-verify
 test http://192.168.1.152:30007/
 
 
+## Install Helm Client
+
+
+
+
 # referentes
 - [install ubuntu on raspberry](https://ubuntu.com/download/raspberry-pi)
 - [install kuberntes on raspberry-pi](https://opensource.com/article/20/6/kubernetes-raspberry-pi)
@@ -152,15 +157,17 @@ test http://192.168.1.152:30007/
 - [node port info](https://cloud.ibm.com/docs/containers?topic=containers-nodeport)
 
 
-https://ubuntu.com/tutorials/how-to-kubernetes-cluster-on-raspberry-pi#5-master-node-and-leaf-nodes
-https://blog.bricogeek.com/noticias/raspberry-pi/como-hacer-un-cluster-kubernetes-con-raspberry-pi/
-https://www.youtube.com/watch?v=ra6kNSIB1uA
+- [cluster with mikrok8s](https://ubuntu.com/tutorials/how-to-kubernetes-cluster-on-raspberry-pi#5-master-node-and-leaf-nodes)
+- [Cluster Kubernetes con Raspberry Pi](https://blog.bricogeek.com/noticias/raspberry-pi/como-hacer-un-cluster-kubernetes-con-raspberry-pi/
+https://www.youtube.com/watch?v=ra6kNSIB1uA )
+
 
 
 ## others tutorials
+- [CIDR] (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
 - [create cluster I](https://www.shogan.co.uk/kubernetes/building-a-raspberry-pi-kubernetes-cluster-part-1-routing/)
 - [create cluster II](https://www.shogan.co.uk/kubernetes/building-a-raspberry-pi-kubernetes-cluster-part-2-master-node/)
 - [create cluster III](https://www.shogan.co.uk/kubernetes/building-a-pi-kubernetes-cluster-part-3-worker-nodes-and-metallb/)
 - [create cluster IIII](https://www.shogan.co.uk/kubernetes/raspberry-pi-kubernetes-cluster-with-openfaas-for-serverless-functions-part-4/)
 
-
+- [Raspberry Pi Kubernetes Cluster with Ubuntu 20.04](https://www.youtube.com/watch?v=qv3_gLvjITk&t=2809s)
